@@ -1,0 +1,5 @@
+# Ignore .env file in BloomBasketBackkend directory
+BloomBasketBackkend/.env
+
+# Ignore node_modules directory in BloomBasketBackkend directory
+BloomBasketBackkend/node_modules

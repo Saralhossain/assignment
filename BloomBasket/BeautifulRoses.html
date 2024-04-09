@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Bloom Basket</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Delius Swash Caps' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Andika' rel='stylesheet'>
+    <link rel="stylesheet" href="style1.css">
+
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #fde3a7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #ffab66 !important;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .navbar-brand {
+            font-family: 'Delius Swash Caps', cursive;
+            font-size: 2rem;
+            color: #fff;
+        }
+
+        .navbar-nav .nav-link {
+            color: black !important;
+        }
+
+        .navbar-dark .navbar-toggler-icon {
+            border-color: black;
+        }
+
+        .jumbotron-header {
+            background-color: #ffab66;
+            color: black;
+            padding: 100px 0;
+            border-radius: 0;
+            margin-bottom: 0;
+        }
+
+        .jumbotron-header h1 {
+            font-family: 'Delius Swash Caps', cursive;
+            font-size: 3rem;
+        }
+
+        .jumbotron-header p {
+            font-size: 1.2rem;
+        }
+
+        .jumbotron-body {
+            background-color: #fff;
+            padding: 50px 0;
+            margin-top: 30px;
+            border-radius: 10px;
+        }
+
+        .category-img {
+            border-radius: 0.5rem;
+            transition: transform 0.3s ease;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-img:hover {
+            transform: scale(1.05);
+        }
+
+        .category-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .footer {
+            background-color: #ffa94d;
+            color: black;
+            padding: 40px 0;
+        }
+
+        .footer a {
+            color: black;
+        }
+        .add-to-cart-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .jumbotron {
+            background-image: url('https://example.com/your-image.jpg'); /* Add your image URL */
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 100px 0;
+            margin-bottom: 0;
+        }
+
+        .jumbotron h1 {
+            font-family: 'Delius Swash Caps', cursive;
+            font-size: 3rem;
+        }
+
+        .jumbotron p {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <!--Header-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary">
+        <div class="container">
+            <img src="https://d38ulo0p1ibxtf.cloudfront.net/fit-in/2560x1600/users/1/images/original_image_09-06-2021_11:44:04.png" alt="Bloom Basket Logo" width="100" height="50">
+
+            <a class="navbar-brand" href="#">Bloom Basket</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Shop.html">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="About_Us.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Contact_Us.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Signin.html">Sign in</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--Header ends-->
+    
+        <div class="selected-product-section">
+            <div class="product-item">
+                <div class="discount-and-image">
+                    <div class="number-circle">
+                        50%
+                     </div>
+                     <img class="product-image" src="https://imgcdn.floweraura.com/timeless-crimson-elegance-9800360fl-A.jpg?tr=w-264,q-70" alt="image">
+    
+                </div>
+                
+                <div class="more-details">
+                    
+                    <h1>Beautiful Roses</h1>
+                    <div class="sizes">
+                        <button class="sizes-btn first">10</button>
+                        <button class="sizes-btn">15</button>
+                        <button class="sizes-btn">20</button>
+                    </div>
+                    <h5>Colors</h5>
+                    <div class="row-items">
+                        <div class="colors">
+                        
+                            <div class="colour green"></div>
+                            <div class="colour red"></div>
+                            <div class="colour pink"></div>
+                            <div class="colour aqua"></div>
+                        </div>
+                        <div class="additional-feature">
+                          <h5>Extra roses</h5>
+                            <input id="checkbox" type="checkbox"/><label for="checkbox">10 roses</label>
+                            <input id="checkbox1" type="checkbox"/><label for="checkbox">30 roses</label>
+            
+                        </div>
+
+                    </div>
+                   <div class="row-items">
+                    <div class="prices">
+                        <p class="price-old">$ 300</p>
+                        <p class="price-new">$ 100</p>
+                    </div>
+                    <div class="cta-button">
+                        <button class="buy">Buy now</button>
+                    </div>
+
+                   </div>
+                           
+                </div>
+             </div>
+
+            </div><div>
+        
+    
+        </section>
+       <centre> <h2 class="similar-text">Similar Flowers</h2>  </centre>
+         
+           
+       
+
+        <div class="row jumbotron">
+            <div class="col-md-4 ">
+                <div class="text-center text-dark">
+                    <a href="BeautifulRoses.html"><img src="https://res.cloudinary.com/interflora/f_auto,q_auto,t_pnopt5prodlp/products/p-sway-me-more-flowers-123032-m.jpg" alt="Roses" class="category-img img-fluid"></a>
+                    <h3 class="category-title">Beautiful Roses</h3>
+                   
+                     <div >
+                         <p>$320</p>
+                    <button class="add-to-cart-btn" >Add to Cart</button>
+
+                </div></div></div>
+
+
+                        <div class="col-md-4 ">
+                            <div class="text-center text-dark">
+                                <a href="BeautifulRoses.html"><img src="https://res.cloudinary.com/interflora/f_auto,q_auto,t_pnopt5prodlp/products/p-unforgetabble-50-white-roses-hand-tied-123031-m.jpg" alt="Roses" class="category-img img-fluid"></a>
+                                <h3 class="category-title">Beautiful Roses</h3>
+                               
+                                 <div >
+                                     <p>$320</p>
+                                <button class="add-to-cart-btn" >Add to Cart</button>
+    
+                            </div></div></div>
+                            <div class="col-md-4 ">
+                                <div class="text-center text-dark">
+                                    <a href="BeautifulRoses.html"><img src="https://res.cloudinary.com/interflora/f_auto,q_auto,t_pnopt5prodlp/products/p-blooming-romance-125158-m.jpg"></a>
+                                    <h3 class="category-title">Beautiful Roses</h3>
+                                   
+                                     <div >
+                                         <p>$320</p>
+                                    <button class="add-to-cart-btn" >Add to Cart</button>
+        
+                                </div></div></div>
+                          
+                        
+                        
+                            </div>
+                            
+
+            
+
+
+         <!--Footer-->
+    <footer class="footer text-center">
+        <footer class="footer text-center">
+            <div class="container">
+                <p>&copy; 2024 Bloom Basket. All Rights Reserved </p>
+                <p>Follow us: <a href="#" class="fa fa-facebook"></a> <a href="#" class="fa fa-twitter"></a> <a href="#" class="fa fa-instagram"></a></p>
+            </div>
+        </footer>
+    </footer>
+    <!--Footer End-->  
+
+    
+
+</body>
