@@ -16,32 +16,45 @@ exports.signup = async (req, res) => {
     }
 };
 
-exports.login = async (req, res) => {
-    const { email , password } = req.body;
-    try {
-        let userId = 1;
-        console.log("user name : ", email , password);
-        const user = await User.getUserByEmail(email);
-        console.log("user :", user);
-        if (!user || user.length === 0) {
-            return res.status(401).send('Invalid username or password');
-        }
-        console.log("pass :" , password);
-        const passwordMatch = await bcrypt.compare(password, '$2b$10$YKpDAsXXE3xXB4ygW33iuun8/blTGHnkxdtROI0jkQlNQit3/Ogr6');
-        if (!passwordMatch) {
-            return res.status(401).send('Invalid username or password');
-        }
+exports.login = (req, res) => {
+    const { email, password } = req.body;
+    let userId = 1; // Assuming default user ID
 
-        // Generate JWT token
-        const token = jwt.sign({ userId: 1, username: 'saral_' , email: email }, secretKey, { expiresIn: '1h' });
+    console.log("user name : ", email, password);
 
-        // Set the token as a cookie (optional)
-        res.cookie('token', token, { httpOnly: true });
+    User.getUserByEmail(email)
+        .then((user) => {
+            console.log("user :", user);
 
-        // Send token in response
-        res.status(200).json({ token , userId });
-    } catch (error) {
-        console.error('Error logging in user:', error);
-        res.status(500).send('Error logging in user');
-    }
+            if (!user || user.length === 0) {
+                return res.status(401).send('Invalid username or password');
+            }
+
+            console.log("pass :", user[0].password);
+
+            bcrypt.compare(password, user[0].password)
+                .then((passwordMatch) => {
+                    if (!passwordMatch) {
+                        return res.status(401).send('Invalid username or password');
+                    }
+
+                    // Generate JWT token
+                    const token = jwt.sign({ userId: user[0].user_id, username: user[0].username, email: user[0].email }, secretKey, { expiresIn: '1h' });
+
+                    // Set the token as a cookie (optional)
+                    res.cookie('token', token, { httpOnly: true });
+
+                    // Send token and user ID in response
+                    res.status(200).json({ token, userId: user[0].user_id });
+                })
+                .catch((compareError) => {
+                    console.error('Error comparing passwords:', compareError);
+                    res.status(500).send('Error comparing passwords');
+                });
+        })
+        .catch((getUserError) => {
+            console.error('Error fetching user by email:', getUserError);
+            res.status(500).send('Error logging in user');
+        });
 };
+

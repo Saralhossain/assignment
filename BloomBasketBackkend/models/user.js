@@ -6,13 +6,17 @@ class User {
     }
 
     static async getUserByEmail(email) {
-        try {
-            return await db.query('SELECT * FROM user WHERE email = ?', [email]);
-        } catch (error) {
-            console.error('Error fetching user by email:', error);
-            throw error; 
-        }
-        }
+        return new Promise((resolve, reject) => {
+            db.query("SELECT * FROM `user` WHERE email = ?", [email], (err, results, fields) => {
+                if (err) {
+                    console.error('Error fetching user by email:', err);
+                    reject(err);
+                } else {
+                    resolve(results);
+                }
+            });
+        });
+    }
 }
 
 module.exports = User;
