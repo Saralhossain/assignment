@@ -192,7 +192,7 @@
 
                 if (response.ok) {
                     alert('User registered successfully!');
-                    window.location.href = '/signin.html'; // Redirect to signin page
+                    // window.location.href = '/signin.html'; // Redirect to signin page
                 } else {
                     const errorMessage = await response.text();
                     alert(`Registration failed: ${errorMessage}`);
@@ -229,9 +229,9 @@
 
                 // Store the token in a cookie
                 document.cookie = `jwtToken=${token}; path=/`;
-
+                alert("Sign In SuccessFully.");
                 // Redirect to the Home page
-                window.location.href = 'file:///C:/Users/PMLS/assignment/BloomBasket/Home.html#';
+                // window.location.href = 'file:///C:/Users/PMLS/assignment/BloomBasket/Home.html#';
             } catch (error) {
                 console.error('Error signing in:', error);
                 alert('Sign-in failed. Please check your credentials.');
