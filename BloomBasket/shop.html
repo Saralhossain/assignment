@@ -339,7 +339,7 @@
                         const productRowContainer = document.getElementById(`${category.replace(/\s+/g, '')}Products`);
                         let productRow = '';
                         categoryProducts.forEach((product, index) => {
-                            const { product_id, name, description, price , img_url } = product;
+                            const { product_id, name, description, price , img_url, quantity } = product;
     
                             // Create a new product card element
                             const productCard = `
@@ -348,7 +348,8 @@
                                         <img src=${img_url} alt="${name}" class="category-img img-fluid">
                                         <h3 class="category-title">${name}</h3>
                                         <p>${description}</p>
-                                        <button class="add-to-cart-btn" onclick="addToCart(${product_id}, '${name}', ${price} , '${img_url}')">Add to Cart - $${price.toFixed(2)}</button>
+                                        <p>Quantities : <span>${quantity}</span> </p>
+                                        <button class="add-to-cart-btn" onclick="addToCart(${product_id}, '${name}', ${price} , '${img_url}', ${quantity})">Add to Cart - $${price.toFixed(2)}</button>
                                     </div>
                                 </div>
                             `;
@@ -375,16 +376,19 @@
         }
     
         // Function to add item to cart
-        async function addToCart(productId, productName, productPrice , img_url) 
+        async function addToCart(productId, productName, productPrice , img_url, quantity) 
         {
-            console.log("product : ",productId , productName, productPrice  , img_url);
-            const quantity = 1; 
+            console.log("product : ",productId , productName, productPrice  , img_url , quantity);
+            if(quantity<= 0){
+                alert('Product is out of stock.');
+                return;
+            }
             const token = localStorage.getItem('accessToken'); 
             const userId = localStorage.getItem('userId');
             const body = {
                 userId: userId,
                 product_id: productId,
-                quantity: quantity,
+                quantity: 1,
                 product_name: productName,
                 total_price: productPrice * quantity,
                 img_url: img_url,
@@ -400,16 +404,33 @@
                     body: JSON.stringify({
                         user_id: userId,
                         product_id: productId,
-                        quantity: quantity,
+                        quantity: 1,
                         product_name: productName,
                         total_price: productPrice * quantity,
                         img_url : img_url,
                     })
                 });
                 
-                // console.log("respo : ",await response.json());
+                
                 if (response.ok) { 
                     alert('Item added to cart successfully!');
+                    const updateQuantityResponse = await fetch(`http://localhost:3000/api/products/${productId}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify({
+                                quantity: -1
+                            })
+                        });
+
+                        if (updateQuantityResponse.ok) {
+                            console.log('Product quantity updated successfully.');
+                            fetchAndDisplayProducts();
+                        } else {
+                            console.error('Failed to update product quantity.');
+                        }
                   } else {
                     throw new Error('Failed to add item to cart');
                 }

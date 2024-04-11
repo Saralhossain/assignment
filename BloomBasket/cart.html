@@ -203,7 +203,7 @@
     
                     // Loop through cart items and create HTML for each item
                     cartItems.forEach(item => {
-                        const { cart_id, product_name, quantity, total_price , img_url } = item;
+                        const { cart_id, product_name, quantity, total_price , img_url , product_id } = item;
     
                         // Calculate item total cost
                         const itemTotalCost = quantity * total_price;
@@ -229,7 +229,7 @@
                                             <p class="cart-item-total">Total: £${itemTotalCost.toFixed(2)}</p>
                                         </div>
                                         <div class="col-md-3">
-                                            <button class="btn btn-danger remove-btn" onclick="removeCartItem(${cart_id})">Remove</button>
+                                            <button class="btn btn-danger remove-btn" onclick="removeCartItem(${cart_id}  , ${product_id})">Remove</button>
                                         </div>
                                     </div>
                                 </div>
@@ -263,7 +263,8 @@
                 } 
                 else {
                     const cartItemsContainer = document.getElementById('cartItemsContainer');
-                    cartItemsContainer.innerHTML = '';const cartSummaryContainer = document.getElementById('cartSummaryContainer');
+                    cartItemsContainer.innerHTML = '';
+                    const cartSummaryContainer = document.getElementById('cartSummaryContainer');
                     cartSummaryContainer.innerHTML = ''; // Clear existing content
                     const cartItemHtml = `
                             <div class="cart-item text-center" >
@@ -279,14 +280,33 @@
         }
     
         // Function to remove a cart item by cart_id
-        async function removeCartItem(cartId) {
+        async function removeCartItem(cartId , product_id) {
+            // console.log("rpod : ",cartId ,  product_id);
             try {
                 const response = await fetch(`http://localhost:3000/api/cart/${cartId}`, {
                     method: 'DELETE'
                 });
     
                 if (response.ok) {
-                    fetchAndDisplayCartItems();
+                    let token= localStorage.getItem('accessToken');
+                    let id=product_id;
+                    const updateQuantityResponse = await fetch(`http://localhost:3000/api/products/${id}`, {
+                            method: 'PUT',
+                            headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify({
+                                quantity: 1
+                            })
+                        });
+
+                        if (updateQuantityResponse.ok) {
+                            console.log('Product quantity updated successfully.');
+                            fetchAndDisplayCartItems();
+                        } else {
+                            console.error('Failed to update product quantity.');
+                        }
                 } else {
                     console.error('Failed to remove cart item.');
                 }

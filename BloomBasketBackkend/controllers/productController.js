@@ -57,17 +57,19 @@ exports.getProductById = (req, res) => {
 
 // Controller function to update a product by ID
 exports.updateProduct = (req, res) => {
-    const productId = req.params.id;
-    const { name, category, description, price } = req.body;
+    const product_id = req.params.id;
+    const { quantity } = req.body;
+    console.log("p_id & Q ", product_id , quantity);
+    
 
-    const updatedProduct = {
-        name,
-        category,
-        description,
-        price
-    };
+    const operator = Number(quantity) > 0 ? '+' : '-';
+    const absQuantity = Math.abs(quantity); 
+    // console.log("operator & asbQ ", operator , absQuantity);
 
-    db.query('UPDATE products SET ? WHERE id = ?', [updatedProduct, productId], (err, result) => {
+    const sql = `UPDATE product SET quantity = quantity ${operator} ? WHERE product_id = ?`;
+    const values = [absQuantity, product_id];
+
+    db.query(sql, values, (err, result) => {
         if (err) {
             console.error('Error updating product:', err);
             res.status(500).json({ error: 'Failed to update product' });
@@ -76,6 +78,7 @@ exports.updateProduct = (req, res) => {
         }
     });
 };
+
 
 // Controller function to delete a product by ID
 exports.deleteProduct = (req, res) => {
