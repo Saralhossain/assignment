@@ -1,0 +1,25 @@
+.navbar {
+    background-color: #ffab66 !important;
+    border-radius: 0 0 10px 10px;
+  }
+  
+  .navbar-brand {
+    font-family: 'Delius Swash Caps', cursive;
+    font-size: 2rem;
+    color: #fff;
+  }
+  
+  .navbar-nav .nav-link {
+    color: black !important;
+    text-decoration: none;
+  }
+  
+  .navbar-dark .navbar-toggler-icon {
+    border-color: black;
+  }
+
+  nav ul { 
+    list-style-type: none;
+    gap: 14px;
+ }
+  

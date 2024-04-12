@@ -235,12 +235,9 @@
                                 </div>
                             </div>
                         `;
-    
-                        // Append cart item HTML to container
                         cartItemsContainer.innerHTML += cartItemHtml;
                     });
     
-                    // Create cart summary HTML
                     const cartSummaryHtml = `
                         <div class="col-md-4">
                             <div class="card">
@@ -335,9 +332,6 @@
             }
         }
 
-
-
-        // Call fetchAndDisplayCartItems when the page is loaded
         window.addEventListener('load', fetchAndDisplayCartItems);
     </script>
     
