@@ -11,9 +11,9 @@ const Logout = () => {
   const handleLogout = () => {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('userId');
-    window.location.reload();
     
     navigate('/');
+    window.location.reload();
     // Show a notification
     // toast.success('Logged out successfully!', {
     //   position: toast.POSITION.TOP_BOTTOM,
