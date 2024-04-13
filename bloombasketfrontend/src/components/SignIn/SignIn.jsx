@@ -29,9 +29,8 @@ const SignIn = () => {
       const { token, userId } = await response.json();
       localStorage.setItem('accessToken', token);
       localStorage.setItem('userId', userId);
-      
       navigate('/');
-      // alert('Sign In Successful!'); // You can redirect or perform other actions after successful sign-in
+      window.location.reload();
     } catch (error) {
       console.error('Error signing in:', error);
       alert('Sign-in failed. Please check your credentials.');

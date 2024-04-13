@@ -3,16 +3,21 @@ import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 const Logout = () => {
 
+  const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('userId');
+    window.location.reload();
+    
+    navigate('/');
     // Show a notification
-    toast.success('Logged out successfully!', {
-      position: toast.POSITION.TOP_CENTER
-    });
+    // toast.success('Logged out successfully!', {
+    //   position: toast.POSITION.TOP_BOTTOM,
+    // });
   }
 
   return (
