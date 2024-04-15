@@ -40,6 +40,28 @@ const Contact = () => {
                   />
                 </div>
                 <div className="form-group">
+                  <label htmlFor="phone">Phone Number</label>
+                  <input
+                    type="tel"
+                    className="form-control"
+                    id="phone"
+                    name="phone"
+                    placeholder="Enter your phone number"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="address">Physical Address</label>
+                  <textarea
+                    className="form-control"
+                    rows="3"
+                    id="address"
+                    name="address"
+                    placeholder="Enter your physical address"
+                    required
+                  ></textarea>
+                </div>
+                <div className="form-group">
                   <label htmlFor="message">Message</label>
                   <textarea
                     className="form-control"

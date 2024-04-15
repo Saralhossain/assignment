@@ -112,7 +112,10 @@ const Shop = () => {
                       onClick={() => addToCart(product.product_id, product.name, product.price, product.img_url, product.quantity)}
                       disabled={product.quantity <= 0}
                     >
-                      Add to Cart - ${product.price.toFixed(2)}
+                      Add to Cart - {parseFloat(product?.price).toLocaleString('en-GB', {
+                              style: 'currency',
+                              currency: 'GBP'
+                          })}
                     </Button>
                   </div>
                 </Col>

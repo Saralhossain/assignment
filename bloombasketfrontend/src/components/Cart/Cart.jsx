@@ -92,7 +92,10 @@ const Cart = () => {
                       <div className="col-md-4">
                         <div className="cart-item-details">
                           <h4>{item.product_name}</h4>
-                          <p>Price: £{item.total_price.toFixed(2)}</p>
+                          <p>Price:{parseFloat(item.total_price).toLocaleString('en-GB', {
+                              style: 'currency',
+                              currency: 'GBP'
+                          })}</p>
                           <p>Quantity: {item.quantity}</p>
                         </div>
                       </div>
@@ -119,7 +122,11 @@ const Cart = () => {
                       <h5 className="card-title">Cart Summary</h5>
                       <p>Total Items: {cartItems.length}</p>
                       <p>
-                        Total Cost: £{cartItems.reduce((total, item) => total + item.quantity * item.total_price, 0).toFixed(2)}
+                        Total Cost: 
+                        {parseFloat(cartItems.reduce((total, item) => total + item.quantity * item.total_price, 0)).toLocaleString('en-GB', {
+                              style: 'currency',
+                              currency: 'GBP'
+                          })}
                       </p>
                       <Button
                         variant="primary"
